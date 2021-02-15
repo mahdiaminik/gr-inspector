@@ -118,6 +118,9 @@ private:
     QwtPlot* d_plot;
     QwtScaleWidget* d_scale;
     QwtPlotCurve* d_curve;
+
+    QwtPlotCurve* d_max_hold;
+
     QTimer* d_timer;
     QwtPlotGrid* d_grid;
     QGridLayout* d_layout;

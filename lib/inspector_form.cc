@@ -68,6 +68,16 @@ inspector_form::inspector_form(int fft_len,
                              QSize(7, 7));
     d_curve->setSymbol(d_symbol);
 
+
+    d_max_hold = new QwtPlotCurve();
+    d_max_hold->attach(d_plot);
+    d_max_hold->setPen(Qt::green, 1);
+    d_max_hold->setSymbol(d_symbol);
+
+
+
+
+
     d_grid = new QwtPlotGrid();
     d_grid->setPen(QPen(QColor(60, 60, 60), 0.5, Qt::DashLine));
     d_grid->attach(d_plot); // add grid to plot
@@ -120,6 +130,9 @@ inspector_form::~inspector_form()
     delete d_zoomer;
     delete d_plot;
     delete d_curve;
+
+    delete d_max_hold;
+
     delete[] d_freq;
     delete d_symbol;
     delete d_grid;
@@ -384,6 +397,13 @@ void inspector_form::refresh()
     // Do replot
     d_plot->replot();
 }
+
+void inspector_form::max_hold_update(std::vector<double>* buffer , int fft_len)
+{
+
+}
+
+
 
 } // namespace inspector
 } // namespace gr
