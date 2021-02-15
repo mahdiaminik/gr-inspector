@@ -44,6 +44,9 @@ inspector_form::inspector_form(int fft_len,
     d_fft_len = fft_len;
     // Setup GUI
     d_buffer = buffer;
+
+    d_max_buffer = new std::vector<double>(fft_len);
+
     d_interval = 250; // update interval
     d_rf_map = rf_map;
     d_manual = manual;
@@ -399,6 +402,11 @@ void inspector_form::refresh()
 }
 
 void inspector_form::max_hold_update(std::vector<double>* buffer , int fft_len)
+{
+
+}
+
+void inspector_form::max_buffer_clean()
 {
 
 }

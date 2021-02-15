@@ -107,6 +107,9 @@ private:
     bool* d_manual;
     std::vector<float> d_axis_x, d_axis_y;
     std::vector<double>* d_buffer;
+
+    std::vector<double>* d_max_buffer;
+
     float d_max, d_min, d_cfreq, d_mouse_offset;
     double* d_freq;
     std::map<int, std::string> d_analysis_texts;
@@ -136,6 +139,7 @@ protected:
 public slots:
     void refresh();
     void max_hold_update(std::vector<double>* buffer , int fft_len);
+    void max_buffer_clean();
     void manual_cb_clicked(int state);
 };
 
