@@ -46,6 +46,7 @@ inspector_form::inspector_form(int fft_len,
     d_buffer = buffer;
 
     d_max_buffer = new std::vector<double>(fft_len);
+    max_buffer_clean();
 
     d_interval = 250; // update interval
     d_rf_map = rf_map;
@@ -396,6 +397,8 @@ void inspector_form::refresh()
     }
 
     d_curve->setRawSamples(d_freq, &d_buffer->at(0), d_fft_len);
+    
+    d_max_hold->setRawSamples(d_freq, &d_max_buffer->at(0), d_fft_len);
 
     // Do replot
     d_plot->replot();
@@ -408,7 +411,12 @@ void inspector_form::max_hold_update(std::vector<double>* buffer , int fft_len)
 
 void inspector_form::max_buffer_clean()
 {
-
+    /*for(int i = 0 ; i < d_max_buffer->size() ; i++)
+    {
+        d_max_buffer(i) = -50.0;
+    }
+    */
+    std::fill(d_max_buffer->begin , d_max_buffer->end , -50.0);
 }
 
 
