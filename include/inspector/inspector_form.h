@@ -138,7 +138,7 @@ protected:
 
 public slots:
     void refresh();
-    void max_hold_update(std::vector<double>* buffer , int fft_len);
+    void max_buffer_update(std::vector<double>* buffer , int fft_len);
     void max_buffer_clean();
     void manual_cb_clicked(int state);
 };

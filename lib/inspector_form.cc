@@ -397,26 +397,32 @@ void inspector_form::refresh()
     }
 
     d_curve->setRawSamples(d_freq, &d_buffer->at(0), d_fft_len);
-    
+    max_buffer_update( d_buffer , d_fft_len);
     d_max_hold->setRawSamples(d_freq, &d_max_buffer->at(0), d_fft_len);
 
     // Do replot
     d_plot->replot();
 }
 
-void inspector_form::max_hold_update(std::vector<double>* buffer , int fft_len)
+void inspector_form::max_buffer_update(std::vector<double>* buffer , int fft_len)
 {
-
+    for(int i = 0 ; i < fft_len ; i++)
+    {
+        if(d_max_buffer->at(i) < d_buffer->at(i))
+            {
+                d_max_buffer->at(i) = d_buffer->at(i);
+            }
+    }
 }
 
 void inspector_form::max_buffer_clean()
 {
-    /*for(int i = 0 ; i < d_max_buffer->size() ; i++)
+    for(int i = 0 ; i < d_max_buffer->size() ; i++)
     {
-        d_max_buffer(i) = -50.0;
+        d_max_buffer->at(i) = -130.0;
     }
-    */
-    std::fill(d_max_buffer->begin , d_max_buffer->end , -50.0);
+    
+    //std::fill(d_max_buffer->begin , d_max_buffer->end , -130.0);
 }
 
 
